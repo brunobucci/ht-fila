@@ -1,0 +1,30 @@
+{
+    "vhosts": [
+      {
+        "name": "/"
+      }
+    ],
+    "queues": [
+      {
+        "name": "pendentes",
+        "vhost": "/",
+        "durable": true
+      },
+      {
+        "name": "processados",
+        "vhost": "/",
+        "durable": true
+      },
+      {
+        "name": "compactados",
+        "vhost": "/",
+        "durable": true
+      },
+      {
+        "name": "erro",
+        "vhost": "/",
+        "durable": true
+      }
+    ]
+  }
+  
