@@ -1,0 +1,17 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672" # Porta do painel de gerenciamento
+      - "5672:5672"   # Porta para conexões AMQP
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json # Define o arquivo de configuração
+    volumes:
+      - ./data-rabbitmq:/var/lib/rabbitmq # Persistência de dados
+      - ./rabbitmq-definitions.json:/etc/rabbitmq/definitions.json # Configuração inicial
+      - ./init-rabbit.sh:/init-rabbit.sh # Script de inicialiação
+    entrypoint: ["bash", "/init-rabbit.sh"]
+    restart: unless-stopped
