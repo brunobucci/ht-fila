@@ -6,22 +6,22 @@
     ],
     "queues": [
       {
-        "name": "pendentes",
+        "name": "videos_processados",
         "vhost": "/",
         "durable": true
       },
       {
-        "name": "processados",
+        "name": "videos_compactados",
         "vhost": "/",
         "durable": true
       },
       {
-        "name": "compactados",
+        "name": "videos_pendentes",
         "vhost": "/",
         "durable": true
       },
       {
-        "name": "erro",
+        "name": "videos_com_erro",
         "vhost": "/",
         "durable": true
       }
