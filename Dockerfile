@@ -1,17 +1,14 @@
 FROM rabbitmq:3.12-management
 
-# Define environment variables
-ENV RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-ENV RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
-ENV RABBITMQ_LOAD_DEFINITIONS="/etc/rabbitmq/definitions.json"
+# Copia o arquivo de definições para o contêiner
+COPY definitions.json /etc/rabbitmq/definitions.json
 
-# Copy RabbitMQ definitions file
-COPY rabbitmq-definitions.json /etc/rabbitmq/definitions.json
+# Garante que o RabbitMQ tenha permissão para acessar o arquivo
+RUN chown rabbitmq:rabbitmq /etc/rabbitmq/definitions.json \
+    && chmod 644 /etc/rabbitmq/definitions.json
 
-# Define volumes for persistence
-VOLUME /var/lib/rabbitmq
+# Configuração do RabbitMQ para carregar o arquivo de definições
+RUN echo "load_definitions = /etc/rabbitmq/definitions.json" > /etc/rabbitmq/rabbitmq.conf
 
-# Expose RabbitMQ default ports
+# Expor as portas padrão do RabbitMQ
 EXPOSE 5672 15672
-
-CMD ["rabbitmq-server"]
