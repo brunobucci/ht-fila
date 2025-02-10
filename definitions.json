@@ -28,17 +28,12 @@
         "durable": true
       },
       {
-        "name": "videos_compactados",
+        "name": "videos_extraidos",
         "vhost": "/",
         "durable": true
       },
       {
         "name": "videos_pendentes",
-        "vhost": "/",
-        "durable": true
-      },
-      {
-        "name": "videos_com_erro",
         "vhost": "/",
         "durable": true
       },
